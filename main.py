@@ -3,15 +3,43 @@ def main():
         file_contents = f.read()
         #print(file_contents)
 
-        word_count(file_contents)
+        word_count = get_word_count(file_contents)
 
-def word_count(file_contents):
+        letter_count = get_letter_count(file_contents)
+
+        print(word_count)
+        print(letter_count)
+
+def get_word_count(file_contents):
     count = 0
     words = file_contents.split()
-    #print(words)
     for word in words:
         count += 1
-    print(count)
+    return count
+
+def get_letter_count(file_contents):
+
+    char_count = {}
+
+    file_contents = file_contents.lower()
+    #print(file_contents)
+
+    for letter in file_contents:
+        if letter in char_count:
+            char_count[letter] += 1
+        else:
+            char_count[letter] = 1
+
+    return char_count
+
+    """
+    sorted_character_counts = dict(sorted(char_count.items()))
+
+    for char, count in sorted_character_counts.items():
+        print(f"'{char}': {count}")
+
+    print(sorted_character_counts)
+    """
 
 
 
