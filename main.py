@@ -7,8 +7,11 @@ def main():
 
         letter_count = get_letter_count(file_contents)
 
+        report = make_report(word_count, letter_count)
+
         print(word_count)
         print(letter_count)
+        print(report)
 
 def get_word_count(file_contents):
     count = 0
@@ -40,6 +43,14 @@ def get_letter_count(file_contents):
 
     print(sorted_character_counts)
     """
+
+def make_report(word_count, letter_count):
+    report = "--- Begin report of books/frankenstein.txt ---"
+    report = report + f"\n{word_count} words found in document"
+
+    
+
+    return report
 
 
 
