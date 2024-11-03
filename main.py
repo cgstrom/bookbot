@@ -1,7 +1,6 @@
 def main():
     with open("books/frankenstein.txt") as f:
         file_contents = f.read()
-        #print(file_contents)
 
         word_count = get_word_count(file_contents)
 
@@ -9,8 +8,6 @@ def main():
 
         report = make_report(word_count, letter_count)
 
-        print(word_count)
-        print(letter_count)
         print(report)
 
 def get_word_count(file_contents):
@@ -25,7 +22,6 @@ def get_letter_count(file_contents):
     char_count = {}
 
     file_contents = file_contents.lower()
-    #print(file_contents)
 
     for letter in file_contents:
         if letter in char_count:
@@ -35,20 +31,29 @@ def get_letter_count(file_contents):
 
     return char_count
 
-    """
-    sorted_character_counts = dict(sorted(char_count.items()))
-
-    for char, count in sorted_character_counts.items():
-        print(f"'{char}': {count}")
-
-    print(sorted_character_counts)
-    """
-
 def make_report(word_count, letter_count):
-    report = "--- Begin report of books/frankenstein.txt ---"
-    report = report + f"\n{word_count} words found in document"
 
-    
+    letter_count_list = []
+
+    for letter in letter_count:
+        letter_dict = {}
+        if letter.isalpha() == True:
+            letter_dict["char"] = letter
+            letter_dict["count"] = letter_count[letter]
+            letter_count_list.append(letter_dict)
+
+    def sort_on(dict):
+        return dict["count"]
+
+    letter_count_list.sort(reverse = True, key = sort_on)
+
+    report = "\n--- Begin report of books/frankenstein.txt ---"
+    report = report + f"\n{word_count} words found in document\n"
+
+    for i in letter_count_list:
+        report += f"\nThe '{i["char"]}' character was found {i["count"]} times"
+
+    report += "\n--- End report ---\n"
 
     return report
 
