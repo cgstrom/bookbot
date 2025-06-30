@@ -51,7 +51,7 @@ def make_report(word_count, letter_count):
     report = report + f"\n{word_count} words found in document\n"
 
     for i in letter_count_list:
-        report += f"\nThe '{i["char"]}' character was found {i["count"]} times"
+        report += f"\nThe '{i['char']}' character was found {i['count']} times"
 
     report += "\n--- End report ---\n"
 
